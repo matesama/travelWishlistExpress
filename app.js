@@ -134,13 +134,35 @@ app.put('/api/countries/:code', countryValidation, (req, res) => {
 
     const indexOfCountry = countriesList.findIndex(country => country["alpha2Code"] === code.toUpperCase() || country["alpha3Code"] === code.toUpperCase()  )
 
-        //spread Syntax to create a copie of the objects and array to merge them. To maintain data immutability.
+        //spread Syntax to create a copy of the objects and array to merge them. To maintain data immutability.
     countriesList[indexOfCountry] = {... countriesList[indexOfCountry], ...countryUpdateBody}
     res.json({message: 'Country Update successful', countryUpdateBody})
    
 
 } )
 
+app.delete('/api/countries/:code', (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()})
+    }
+    
+    const code = req.params.code;
+
+    const searchCountry = countriesList.find(({ alpha2Code, alpha3Code }) => alpha2Code === code.toUpperCase() || alpha3Code === code.toUpperCase());
+    console.log(searchCountry)
+    if(!searchCountry) {
+        return res.status(404).json({error: 'Country not found'});
+    } 
+
+    const indexOfCountry = countriesList.findIndex(country => country["alpha2Code"] === code.toUpperCase() || country["alpha3Code"] === code.toUpperCase()  )
+    countriesList.splice(indexOfCountry, 1);
+    
+    res.json({message: 'Country Update successful', searchCountry})
+
+
+
+})
 
 
 
