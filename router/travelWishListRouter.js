@@ -7,7 +7,7 @@ const { body, validationResult } = require('express-validator');
 travelWishListRouter.get('/', (req, res) => {
     const sort = req.query.sort;
     const visited = req.query.visited;
-    
+
     if(visited === 'true') {
       const filterVisitedCountries = countriesList.filter((country) => country.visited === true)     
         res.json(filterVisitedCountries);
@@ -26,8 +26,8 @@ travelWishListRouter.get('/', (req, res) => {
                 return 0;
             }
         });
-
-        res.json(sortList) 
+        
+        res.json(sortList);
     } else if(countriesList) {
         res.json(countriesList) 
     } else {

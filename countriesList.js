@@ -1,5 +1,5 @@
 
-const countries = [
+const countriesList = [
 {
     id: 1,
     name: 'Bhutan',
@@ -42,4 +42,4 @@ const countries = [
 }
 ]
 
-module.exports = countries;
+module.exports = countriesList;

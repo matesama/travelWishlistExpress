@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <div class="jumbotron">
+    <h1>Travel wishlist</h1>
+    <p>Welcome to your List of dream destinations</p>
+    
+    <ul>
+        <% countries.forEach((country) => { %>
+          <li>
+            <strong><%= country.name %>:</strong>
+            alpha2Code <strong><%= country.alpha2Code %></strong>,
+            alpha3Code <strong><%= country.alpha3Code %></strong>,
+            visited <strong><%= country.visited %></strong>
+          </li>
+        <% }); %>
+    </ul>
+
+    <%- include('../partials/form'); %>
+
+  </div>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
